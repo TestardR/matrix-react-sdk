@@ -275,7 +275,7 @@ export default class DeviceVerifyDialog extends React.Component {
         return <VerificationShowSas
             sas={this._showSasEvent.sas}
             onCancel={this._onCancelClick}
-            onStartEmoji={this._onUseSasClick}
+            onDone={this._onSasMatchesClick}
         />;
     }
 
