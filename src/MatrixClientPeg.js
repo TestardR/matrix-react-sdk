@@ -221,7 +221,7 @@ class _MatrixClientPeg {
             verificationMethods: [
                 verificationMethods.SAS,
                 SHOW_QR_CODE_METHOD,
-                SCAN_QR_CODE_METHOD,
+                SCAN_QR_CODE_METHOD, // XXX: We don't actually support scanning yet!
                 verificationMethods.RECIPROCATE_QR_CODE,
             ],
             unstableClientRelationAggregation: true,
