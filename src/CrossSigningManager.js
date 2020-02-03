@@ -71,6 +71,7 @@ async function getSecretStorageKey({ keys: keyInfos }) {
     const { finished } = Modal.createTrackedDialog("Access Secret Storage dialog", "",
         AccessSecretStorageDialog,
         {
+            explicitDismiss: true,
             keyInfo: info,
             checkPrivateKey: async (input) => {
                 const key = await inputToKey(input);
