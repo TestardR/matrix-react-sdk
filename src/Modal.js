@@ -124,6 +124,7 @@ class ModalManager {
         );
         modal.onFinished = props ? props.onFinished : null;
         modal.className = className;
+        modal.explicitDismiss = !!(props && props.explicitDismiss);
 
         return {modal, closeDialog, onFinishedProm};
     }
@@ -268,7 +269,7 @@ class ModalManager {
                     <div className="mx_Dialog">
                         { this._staticModal.elem }
                     </div>
-                    <div className="mx_Dialog_background mx_Dialog_staticBackground" onClick={this.closeAll}></div>
+                    <div className="mx_Dialog_background mx_Dialog_staticBackground" onClick={this._staticModal.explicitDismiss ? null : this.closeAll}></div>
                 </div>
             );
 
@@ -289,7 +290,7 @@ class ModalManager {
                     <div className="mx_Dialog">
                         {modal.elem}
                     </div>
-                    <div className="mx_Dialog_background" onClick={this.closeAll}></div>
+                    <div className="mx_Dialog_background" onClick={modal.explicitDismiss ? null : this.closeAll}></div>
                 </div>
             );
 
