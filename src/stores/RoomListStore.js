@@ -136,6 +136,8 @@ class RoomListStore extends Store {
                 if (!logicallyReady) break;
 
                 if (payload.settingName === 'RoomList.orderByImportance') {
+                    // TODO update sotring algorithm to accept alphabetical ordering
+                    // For now payload.newValue is a boolean, it should allow 3 different values : importance, recent, and alpha
                     this.updateSortingAlgorithm(payload.newValue === true ? ALGO_IMPORTANCE : ALGO_RECENT);
                 } else if (payload.settingName === 'feature_custom_tags') {
                     this._setState({tagsEnabled: payload.newValue});
