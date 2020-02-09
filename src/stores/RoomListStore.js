@@ -708,7 +708,7 @@ class RoomListStore extends Store {
     }
 
     _lexicographicalComparator(roomA, roomB) {
-        return roomA.name > roomB.name ? 1 : -1;
+        return roomA.name.toLowerCase() > roomB.name.toLowerCase() ? 1 : -1;
     }
 
     _getManualComparator(tagName, optimisticRequest) {
