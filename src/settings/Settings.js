@@ -433,15 +433,15 @@ export const SETTINGS = {
         displayName: _td('Order rooms in the room list by most important first instead of most recent'),
         default: true,
     },
-    "RoomList.orderByRecent": {
+   "RoomList.orderByRecent": {
         supportedLevels: LEVELS_ACCOUNT_SETTINGS,
-        displayName: 'Order rooms in the room list by most recent',
+        displayName: 'Order rooms in the room list by most recent first',
         default: false,
     },
     "RoomList.orderByAlphabet": {
         supportedLevels: LEVELS_ACCOUNT_SETTINGS,
-        displayName: 'ORder rooms in the room list aphabetically',
-        default: false
+        displayName: 'Order rooms in the room list aphabetically',
+        default: false,
     },
     "breadcrumbs": {
         supportedLevels: LEVELS_ACCOUNT_SETTINGS,

@@ -48,6 +48,8 @@ export default class PreferencesUserSettingsTab extends React.Component {
 
     static ROOM_LIST_SETTINGS = [
         'RoomList.orderByImportance',
+        'RoomList.orderByRecent',
+        'RoomList.orderByAlphabet',
         'breadcrumbs',
     ];
 

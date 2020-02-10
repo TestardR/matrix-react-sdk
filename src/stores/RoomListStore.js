@@ -18,6 +18,7 @@ import dis from '../dispatcher';
 import DMRoomMap from '../utils/DMRoomMap';
 import * as Unread from '../Unread';
 import SettingsStore from "../settings/SettingsStore";
+import { createKeywordTypeNode } from 'typescript';
 
 /*
 Room sorting algorithm:
@@ -140,7 +141,6 @@ class RoomListStore extends Store {
         switch (payload.action) {
             case 'setting_updated': {
                 if (!logicallyReady) break;
-
                 if (payload.settingName === 'RoomList.orderByImportance') {
                     this.updateSortingAlgorithm(ALGO_IMPORTANCE)
                 } 

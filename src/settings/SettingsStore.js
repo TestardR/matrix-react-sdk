@@ -363,6 +363,7 @@ export default class SettingsStore {
             if (excludeDefault && levelOrder[i] === "default") continue;
 
             const value = handler.getValue(settingName, roomId);
+
             if (value === null || value === undefined) continue;
             return SettingsStore._getFinalValue(setting, level, roomId, value, levelOrder[i]);
         }
@@ -372,7 +373,7 @@ export default class SettingsStore {
 
     static _getFinalValue(setting, level, roomId, calculatedValue, calculatedAtLevel) {
         let resultingValue = calculatedValue;
-
+        
         if (setting.controller) {
             const actualValue = setting.controller.getValueOverride(level, roomId, calculatedValue, calculatedAtLevel);
             if (actualValue !== undefined && actualValue !== null) resultingValue = actualValue;
@@ -572,7 +573,6 @@ export default class SettingsStore {
 
         // Always support 'default'
         if (!handlers['default']) handlers['default'] = LEVEL_HANDLERS['default'];
-
         return handlers;
     }
 
