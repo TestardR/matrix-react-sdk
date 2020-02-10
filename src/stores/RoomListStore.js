@@ -61,6 +61,12 @@ const ALGO_IMPORTANCE = "importance";
 const ALGO_RECENT = "recent";
 
 /**
+ * Identifier for lexical sorting behaviour: sort alphabetically.
+ * @type {string}
+ */
+const ALGO_ALPHABETICAL = "alphabetical";
+
+/**
  * A class for storing application state for categorising rooms in
  * the RoomList.
  */
@@ -136,10 +142,15 @@ class RoomListStore extends Store {
                 if (!logicallyReady) break;
 
                 if (payload.settingName === 'RoomList.orderByImportance') {
-                    // TODO update sotring algorithm to accept alphabetical ordering
-                    // For now payload.newValue is a boolean, it should allow 3 different values : importance, recent, and alpha
-                    this.updateSortingAlgorithm(payload.newValue === true ? ALGO_IMPORTANCE : ALGO_RECENT);
-                } else if (payload.settingName === 'feature_custom_tags') {
+                    this.updateSortingAlgorithm(ALGO_IMPORTANCE)
+                } 
+                else if (payload.settingName === 'RoomList.orderByRecent') {
+                    this.updateSortingAlgorithm(ALGO_RECENT)
+                }
+                else if(payload.settingName === 'RoomList.orderByAlphabet') {
+                    this.updateSortingAlgorithm(ALGO_ALPHABETICAL)
+                }
+                else if (payload.settingName === 'feature_custom_tags') {
                     this._setState({tagsEnabled: payload.newValue});
                     this._generateInitialRoomLists(); // Tags means we have to start from scratch
                 }
@@ -626,6 +637,11 @@ class RoomListStore extends Store {
                         });
                     };
                     break;
+                case "alphabetical": 
+                    comparator = (entryA, entryB) => {
+                        return entryA.room.name.toLowerCase() > entryB.room.name.toLowerCase() ? 1 : -1;
+                    }
+                break;
                 case "manual":
                 default:
                     comparator = this._getManualComparator(listKey);
@@ -710,7 +726,7 @@ class RoomListStore extends Store {
     }
 
     _lexicographicalComparator(roomA, roomB) {
-        return roomA.name.toLowerCase() > roomB.name.toLowerCase() ? 1 : -1;
+        return roomA.name > roomB.name ? 1 : -1;
     }
 
     _getManualComparator(tagName, optimisticRequest) {
